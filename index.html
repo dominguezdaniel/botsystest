@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to CSS file -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- Page Title -->
+    <h1 class="page-title">Playground</h1>
+
+    <!-- Chat Bubble Button -->
+    <button
+        class="fixed bottom-4 right-4 inline-flex items-center justify-center text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border rounded-full w-16 h-16 bg-black hover:bg-gray-700 m-0 cursor-pointer border-gray-200 bg-none p-0 normal-case leading-5 hover:text-gray-900"
+        type="button" aria-haspopup="dialog" aria-expanded="false" data-state="closed" id="chatToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="text-white block border-gray-200 align-middle">
+            <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" class="border-gray-200"></path>
+        </svg>
+    </button>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chatContainer">
+        <div class="flex flex-col space-y-1.5 pb-6">
+            <h2 class="font-semibold text-lg tracking-tight">Chatbot</h2>
+            <p class="text-sm text-[#6b7280] leading-3"></p>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="message-area" id="messageArea">
+            <!-- Bot's initial message -->
+            <div class="bot-message">
+                Hi, how can I help you today?
+            </div>
+        </div>
+
+        <!-- Input Box -->
+        <div class="input-area">
+            <form class="flex items-center justify-center w-full space-x-2" id="chatForm">
+                <input
+                    class="flex h-10 w-full rounded-md border border-[#e5e7eb] px-3 py-2 text-sm placeholder-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#9ca3af] disabled:cursor-not-allowed disabled:opacity-50 text-[#030712] focus-visible:ring-offset-2"
+                    placeholder="Type your message" id="chatInput" required>
+                <button
+                    class="inline-flex items-center justify-center rounded-md text-sm font-medium text-[#f9fafb] disabled:pointer-events-none disabled:opacity-50 bg-white hover:bg-[#111827E6] h-10 w-10"
+                    type="submit" aria-label="Send message">
+                    <?xml version="1.0" ?><svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg"><title/><path d="M94.2435,1.762A5.9529,5.9529,0,0,0,88.1029.3147l-84,28.0019A5.9953,5.9953,0,0,0,3.0894,39.25l34.5,19.1659,19.166,34.5a6,6,0,0,0,5.2441,3.0878c.1817,0,.3692-.0058.5567-.0234a6.0016,6.0016,0,0,0,5.1328-4.0781l28.0018-84A5.9984,5.9984,0,0,0,94.2435,1.762ZM60.6225,75.168l-11.18-20.121L62.2455,42.2443A5.9993,5.9993,0,0,0,53.7612,33.76L40.9585,46.5627,20.8374,35.383,80.515,15.4905Z"/></svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- Brand Footer -->
+        <div class="brand-footer">
+            Powered by Botsys.co
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script> <!-- Link to JavaScript file -->
+</body>
+</html>
