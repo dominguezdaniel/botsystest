@@ -1,0 +1,98 @@
+/* General container styling */
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2rem;
+    color: #111827;
+}
+
+.chat-container {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    width: 90%;
+    max-width: 440px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    display: none; /* Initially hidden */
+}
+
+.message-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.input-area {
+    margin-top: auto;
+}
+
+.brand-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6b7280;
+    padding-top: 0.5rem;
+}
+
+/* Styling for user and bot message bubbles */
+.user-message,
+.bot-message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+    font-size: 0.875rem;
+    word-wrap: break-word;
+}
+
+/* User message bubble aligned to the right */
+.user-message {
+    background-color: #e5e7eb; /* Light gray background for user */
+    align-self: flex-end; /* Align user messages to the right */
+    text-align: right; /* Text alignment within the bubble */
+    margin-left: auto; /* Pushes the bubble to the far right */
+}
+
+/* Bot message bubble aligned to the left */
+.bot-message {
+    background-color: black; /* Dark background for bot */
+    color: white; /* Text color for bot messages */
+    align-self: flex-start; /* Align bot messages to the left */
+    margin-right: auto; /* Pushes the bubble to the far left */
+}
+
+/* Styling for the chat toggle button */
+#chatToggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+#chatToggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
