@@ -1,43 +1,54 @@
-// Elements and constants
+// Get elements from the HTML document
 const chatForm = document.querySelector("#chatForm");
 const chatInput = document.querySelector("#chatInput");
-const chatContainer = document.querySelector("#chatContainer");
-const chatToggle = document.querySelector("#chatToggle");
 const messageArea = document.querySelector("#messageArea");
 
-// Toggle chat visibility
-chatToggle.addEventListener("click", () => {
-    chatContainer.style.display = chatContainer.style.display === 'none' || !chatContainer.style.display ? 'flex' : 'none';
-});
+// Function to send user message to the backend and get a response
+async function sendMessage(message) {
+    try {
+        // Send a POST request to the backend API
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message }),
+        });
 
-// Event listener for form submit
-chatForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    
-    const userMessage = chatInput.value;
-    if (!userMessage) return;
+        // Parse the response
+        const data = await response.json();
+        
+        // Return the AI response from the API
+        return data.reply;
+    } catch (error) {
+        console.error('Error sending message:', error);
+        return "I'm having trouble connecting right now. Please try again.";
+    }
+}
 
-    // Display user message in chat
-    addMessageToChat(userMessage, "user-message");
-
-    // Clear the input field
-    chatInput.value = "";
-
-    // Simulate AI response (replace with actual API call)
-    setTimeout(() => {
-        const aiMessage = "Sorry, I couldn't find any information in the documentation about that. Expect answer to be less accurate.";
-        addMessageToChat(aiMessage, "bot-message");
-    }, 1000);
-});
-
-// Function to add messages to chat container with bubble styling
+// Function to add a message bubble to the chat area
 function addMessageToChat(message, messageType) {
     const messageDiv = document.createElement("div");
     messageDiv.classList.add(messageType);
-
-    // Display the message without sender labels
-    messageDiv.innerHTML = `${message}`;
-    
+    messageDiv.textContent = message;
     messageArea.appendChild(messageDiv);
-    messageArea.scrollTop = messageArea.scrollHeight; // Scroll to the bottom
+    messageArea.scrollTop = messageArea.scrollHeight; // Auto-scroll to the bottom
 }
+
+// Event listener for submitting the chat form
+chatForm.addEventListener("submit", async (event) => {
+    event.preventDefault();  // Prevent form from refreshing the page
+    
+    const userMessage = chatInput.value;
+    if (!userMessage) return;  // Exit if input is empty
+    
+    // Add user's message to the chat area
+    addMessageToChat(userMessage, "user-message");
+
+    // Clear the input field after sending
+    chatInput.value = "";
+
+    // Get the AI response and display it
+    const aiMessage = await sendMessage(userMessage);
+    addMessageToChat(aiMessage, "bot-message");
+});
